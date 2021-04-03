@@ -23,9 +23,13 @@ Current Data:
 Quite a few outliers in planet size and year length
     Much larger than mean
     All are candidates
-    No correlation between large planet radius and long year length
+    No correlation between large planet radius and long year length (Use scipy to prove)
 No real correlation between planet size and year length (as far as I can tell, may need to do more work)
 Comparison between sampled confirmed and candidate planets show:
     ~same year length, slightly lower year length for candidate planets
     Consisitantly larger candidate planets
     Does not make much sense since larger planets with shorter year lengths would be easier to detect and confirm
+
+
+Use median instead of mean since there are a lot of outliers - skews data
+Find correlation between planet size and speed in sample (use scipy)
