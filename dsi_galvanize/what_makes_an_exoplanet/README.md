@@ -24,6 +24,10 @@ Both of these could also happen due to other stellar bodies or defects in our te
 https://exoplanets.nasa.gov/what-is-an-exoplanet/in-depth/#otp_how_do_we_find_exoplanets?
 
 ## **K2 Survey Data**
+
+<img src="./images/julie.png" alt="julie" style="zoom: 33%;" />
+
+
 Survey done by the Keplar space telescope in its extended mission from 2014-2018
 
 Table includes 2582 objects
@@ -39,8 +43,6 @@ https://en.wikipedia.org/wiki/Kepler_space_telescope#Finding_planet_candidates
 83,830 day year
 
 1,080 Earth radii
-
-![](images\Keplar_space_image.png)
 
 
 Current Data:
