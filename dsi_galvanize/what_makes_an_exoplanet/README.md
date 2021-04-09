@@ -40,7 +40,7 @@ https://en.wikipedia.org/wiki/Kepler_space_telescope#Finding_planet_candidates
 
 1,080 Earth radii
 
-![](images\Keplar_space_image.png =500x500)
+![](images\Keplar_space_image.png)
 
 
 Current Data:
