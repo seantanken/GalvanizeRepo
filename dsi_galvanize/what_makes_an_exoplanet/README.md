@@ -34,6 +34,14 @@ https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbl
 
 https://en.wikipedia.org/wiki/Kepler_space_telescope#Finding_planet_candidates
 
+## **Outliers**
+
+83,830 day year
+
+1,080 Earth radii
+
+![](images\Keplar_space_image.png =500x500)
+
 
 Current Data:
 
