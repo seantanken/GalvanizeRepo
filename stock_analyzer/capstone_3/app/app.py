@@ -161,23 +161,21 @@ def model():
         print(end_idx)
         start_idx = end_idx - 50
         data_df = data.iloc[start_idx:end_idx]
+        target_price = round(data.iloc[end_idx]['AMZN_rolling_close'], 0)
     else:
         return jsonify(model_result=f'{date} is not a valid stock trading day or no data was collected for this day.')
 
     model_data = data_for_model(data_df, ['AMZN_vol', 'AMZN_rolling_close', 'GOOG_rolling_close'], test_size=1.0, shuffle=False)
 
-    result = []
-    target_price = model_data['df'].iloc[-1]['AMZN_rolling_close'])
-
     prediction = amzn_model.predict(model_data['X_test'])
     predictions = np.squeeze(model_data["column_scaler"]["AMZN_rolling_close"].inverse_transform(prediction))
     targets = np.squeeze(model_data["column_scaler"]["AMZN_rolling_close"].inverse_transform(np.expand_dims(model_data['y_test'], axis=0)))
-    raw_r2 = r2_score(targets, predictions)
-    raw_prediction = float(predictions[-1])
+    raw_r2 = round(r2_score(targets, predictions), 3)
+    raw_prediction = round(float(predictions[-1]), 0)
 
     scaled_predictions = scale_result(predictions)
-    final_r2 = r2_score(targets, scaled_predictions)
-    final_prediction = float(scaled_predictions[-1])
+    final_r2 = round(r2_score(targets, scaled_predictions), 3)
+    final_prediction = round(float(scaled_predictions[-1]), 0)
 
     result = f"Recorded price on {date}: {target_price}     Predicted price: {raw_prediction} with an R^2 score of {raw_r2}     Scaled predicted price: {final_prediction} with an R^2 score of {final_r2}"
     return jsonify(model_result=result)
