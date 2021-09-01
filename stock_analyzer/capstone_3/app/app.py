@@ -143,8 +143,6 @@ def index():
 @app.route('/model', methods=['GET', 'POST'])
 def model():
     inputs = request.args
-    for val in inputs:
-        print(val)
     
     if len(inputs["day"]) == 1:
         day = f'0{inputs["day"]}'
@@ -164,18 +162,22 @@ def model():
         start_idx = end_idx - 50
         data_df = data.iloc[start_idx:end_idx]
     else:
-        return jsonify(f'{date} is not a valid stock trading day or no data was collected for this day.')
+        return jsonify(model_result=f'{date} is not a valid stock trading day or no data was collected for this day.')
 
     model_data = data_for_model(data_df, ['AMZN_vol', 'AMZN_rolling_close', 'GOOG_rolling_close'], test_size=1.0, shuffle=False)
 
     result = []
+    result.append(model_data['df'].iloc[-1]['AMZN_rolling_close'])
+
     prediction = amzn_model.predict(model_data['X_test'])
     predictions = np.squeeze(model_data["column_scaler"]["AMZN_rolling_close"].inverse_transform(prediction))
     targets = np.squeeze(model_data["column_scaler"]["AMZN_rolling_close"].inverse_transform(np.expand_dims(model_data['y_test'], axis=0)))
     result.append(r2_score(targets, predictions))
+    result.append(float(predictions[-1]))
 
     scaled_predictions = scale_result(predictions)
     result.append(r2_score(targets, scaled_predictions))
+    result.append(float(scaled_predictions[-1]))
 
     return jsonify(model_result=result)
 
