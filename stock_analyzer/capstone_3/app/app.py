@@ -26,6 +26,9 @@ plt.style.use('ggplot')
 
 app = Flask(__name__)
 
+amzn_model = keras.models.load_model('C:/Users/seant/stock_analyzer/capstone_3/models')
+data = pd.read_csv('C:/Users/seant/stock_analyzer/capstone_3/data/prepped_stock_df.csv')
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -33,8 +36,27 @@ def index():
 @app.route('/model', methods=['GET', 'POST'])
 def model():
     inputs = request.args
-    results = f'{inputs["month"]}-{inputs["day"]}-2021'
+    for val in inputs:
+        print(val)
+    
+    if len(inputs["day"]) == 1:
+        day = f'0{inputs["day"]}'
+    else:
+        day = inputs["day"]
 
-    return jsonify(model_results=results)
+    if len(inputs["month"]) == 1:
+        month = f'0{inputs["month"]}'
+    else:
+        month = inputs["month"]
+
+    date = f'2021-{month}-{day}'
+
+    if data['date_origin'].str.contains(date):
+        result = data.loc[['date_origin'] == date, 'AMZN_rolling_close']
+    else:
+        result = f'{date} is not a valid stock trading day or no data was collected for this day.'
+
+
+    return jsonify(model_result=result)
 
 app.run(host='0.0.0.0', port=5000, debug=True)
