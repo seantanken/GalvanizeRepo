@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <title> Amazon Stock Prediction</title>
+    <style>
+        h1 {
+            font-size: 24ptx;
+        }
+
+        img {
+            width: 150px;
+            border-radius: 75px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        body {
+            background-image: url("");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+
+
+
+</head>
+
+<body><br><br><br>
+    <span style="color:black;font-size:30px;" >Month: </span> <input id="month" ></input><br>
+    <span style="color:black;font-size:30px;">Day: </span> <input id="day"></input><br>
+
+    
+
+    <button type="button" id="submit">Submit</button>
+
+
+
+    <span style="color:black;font-size:30px;">Date: </span> <p id=result> </p>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type=text/javascript>
+
+        let display_results = function(data) {
+            $("p#result").text(data.model_result);
+        }
+
+
+        let send_data = function() {
+            $.getJSON('/model', {
+                month: $('input[id="month"]').val(),
+                day: $('input[id="day"]').val(),
+            }, display_results);
+        }
+
+        
+
+        $(function() {
+            $('button#submit').click(send_data);
+        });
+
+    
+        </script>
+
+</body>
+
+</html>
