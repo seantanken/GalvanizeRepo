@@ -1,6 +1,6 @@
 # Stock Analyzer and Predictor
 
-[TOC]
+
 
 Prediction of future Amazon stock trends and prices using a recursive neural network and historical stock data related to Amazon performance.
 
@@ -40,7 +40,7 @@ Looks at the first derivative of the predicted results to see if it is positive 
 
 **Features used:** AMZN price, AMZN volume
 
-![](C:\Users\seant\stock_analyzer\actual vs prediction graphs\bi, shuf.png)
+![](https://i.loli.net/2021/09/25/7w5ETjse23KvXFn.png)
 
 Follows the targets almost exactly with a delay, essentially saying that the price for tomorrow is the same as the price for today.
 
@@ -54,15 +54,15 @@ High variance (overfitting), needs more diversity.
 
 **Initial predictions:**
 
+![](https://i.loli.net/2021/09/25/cIJn41VeQREb6Op.png)
 
 
-![](C:\Users\seant\stock_analyzer\capstone_3\models\final model\pred vs act.png)
 
 Still has a delay, but predictions do not exactly follow targets.
 
 **After scaling:**
 
-![](C:\Users\seant\stock_analyzer\capstone_3\models\final model\scaled pred vs act.png)
+![](https://i.loli.net/2021/09/25/9myLnBUzw24IGSJ.png)
 
 Follows large changes much better. 30-35% increase in r^2 score compared to unscaled predictions across all models tested.
 
